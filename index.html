@@ -18,17 +18,12 @@
             --card-bg: #25253D;
             --border-color: #3A3A5A;
         }
-        
-        /* --- START OF THE FIX --- */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* --- END OF THE FIX --- */
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* scroll-behavior: smooth; <--- REMOVED this for JS solution */
         }
 
         body {
@@ -39,12 +34,7 @@
             overflow-x: hidden;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+        /* ... (The rest of your CSS remains exactly the same) ... */
 
         h1, h2, h3, h4 {
             font-family: 'Orbitron', sans-serif;
@@ -123,7 +113,6 @@
             box-shadow: 0 0 20px 0px var(--accent-hover);
         }
 
-        /* --- Hero Section --- */
         #hero {
             height: 100vh;
             display: flex;
@@ -206,7 +195,6 @@
             z-index: 1;
         }
 
-        /* --- General Section Styling --- */
         .section {
             padding: 80px 0;
             background-color: var(--secondary-dark);
@@ -218,25 +206,22 @@
             background-color: var(--secondary-dark);
         }
 
-        /* --- About Section --- */
         #about .container {
             display: flex;
             flex-wrap: wrap;
-            align-items: center; /* Vertically align items in the middle if they wrap */
+            align-items: center;
             gap: 40px;
         }
         
         #about .about-image {
-            width: 300px;      /* Fixed width for the circle */
-            height: 300px;     /* Fixed height for the circle */
-            flex-shrink: 0;    /* Prevent the image container from shrinking if space is tight */
-            /* flex-basis: 300px; was used before, width/height is more direct for non-flex-growing item */
-            
-            background-color: var(--card-bg); /* Fallback color */
+            width: 300px;
+            height: 300px;
+            flex-shrink: 0;
+            background-color: var(--card-bg);
             border: 3px solid var(--accent-color);
-            border-radius: 50%; /* Makes the div circular */
+            border-radius: 50%;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-            overflow: hidden;   /* CRUCIAL: Clips anything outside the circle boundaries */
+            overflow: hidden;
             position: relative; 
         }
         
@@ -244,17 +229,14 @@
             display: block; 
             width: 100%;    
             height: 100%;   
-            object-fit: cover; /* Scales the image to fill the container, cropping if necessary. Prevents pixelation if source is larger. */
-            /* object-position: center top; */ /* Optional: Uncomment and adjust if default centering isn't perfect for your photo (e.g., 'center center', '50% 25%') */
+            object-fit: cover;
         }
 
         #about .about-content {
-            flex: 1; /* Allows this content to take up remaining space */
-            min-width: 300px; /* Ensures content doesn't get too squished on smaller flex layouts */
+            flex: 1;
+            min-width: 300px;
         }
 
-
-        /* --- Experience Section --- */
         #experience .experience-item {
             background-color: var(--card-bg);
             padding: 30px;
@@ -309,7 +291,6 @@
             font-weight: bold;
         }
 
-        /* --- Skills Section --- */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -339,7 +320,6 @@
             color: var(--text-light);
         }
 
-        /* --- Projects Section --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -405,7 +385,6 @@
             margin-right: 5px;
         }
 
-        /* --- Contact Section --- */
         #contact .container {
             max-width: 700px;
             text-align: center;
@@ -429,7 +408,6 @@
             margin-right: 8px;
         }
 
-        /* --- Footer --- */
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -442,7 +420,6 @@
             color: var(--text-medium);
         }
 
-        /* --- Scroll Reveal Animation --- */
         .reveal-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -453,7 +430,6 @@
             transform: translateY(0);
         }
 
-        /* --- Responsive Design --- */
         @media (max-width: 992px) {
             #hero h1 { font-size: 2.8rem; }
             #hero .sub-headline { font-size: 1.5rem; }
@@ -469,15 +445,14 @@
             #hero p { font-size: 1rem; }
             
             #about .container {
-                flex-direction: column; /* Stack image and text vertically */
+                flex-direction: column;
                 text-align: center;
             }
             #about .about-image {
-                margin: 0 auto 20px auto; /* Center the image and add bottom margin */
-                width: 200px; /* Smaller circle on mobile */
+                margin: 0 auto 20px auto;
+                width: 200px;
                 height: 200px;
             }
-            /* Note: .about-image img will automatically adapt to this new size due to width/height 100% */
 
             .skills-grid { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
@@ -507,12 +482,11 @@
         </div>
     </header>
 
-    <!-- About Me Section -->
+    <!-- ... (The rest of your HTML Body remains exactly the same until the script section) ... -->
     <section id="about" class="section">
         <div class="container">
                       <div class="about-image reveal-on-scroll">
-                <img src="edwar-amir.jpg" alt="Edwar Amir - Game Developer"> 
-                <!-- If you put it in an 'images' folder, use: src="images/edwar-amir.jpg" -->
+                <img src="edwar-amir.jpg" alt="Edwar Amir - Game Developer">
             </div>
             <div class="about-content reveal-on-scroll">
                 <h2 class="section-title">Player_Profile</h2>
@@ -522,7 +496,6 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
     <section id="experience" class="section">
         <div class="container">
             <h2 class="section-title">Field_Experience</h2>
@@ -539,11 +512,9 @@
                     <li>Assisting in quality assurance and testing processes.</li>
                 </ul>
             </div>
-            <!-- You can add more <div class="experience-item"> here for past experiences -->
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="section">
         <div class="container">
             <h2 class="section-title">Arsenal_Loaded</h2>
@@ -587,15 +558,12 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="section">
         <div class="container">
             <h2 class="section-title">Game_Library</h2>
             <div class="projects-grid">
-                <!-- Project 1: Jump Stick -->
                 <div class="project-card reveal-on-scroll">
                     <div class="project-thumbnail" id="jump-stick-thumb" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=Jump+Stick+Gameplay');">
-                        <!-- Replace with actual image/GIF: https://img.itch.zone/aW1hZ2UvMjgwMzY4OC8xNjc2NjA5Mi5wbmc=/original/m2x1n3.png -->
                     </div>
                     <div class="project-info">
                         <h3>Jump Stick</h3>
@@ -608,17 +576,13 @@
                         </div>
                         <div class="project-links">
                             <a href="https://play.unity.com/en/games/41144037-f62d-4c2e-92fc-6f623369a371/jump-stick" target="_blank" class="btn"><i class="fas fa-play"></i> Play Now</a>
-                            <!-- START: ADDED BUTTON -->
                             <a href="https://drive.google.com/file/d/11RjbfiNH31YDbG4Qe7rjA2S6_bpPJzZ-/view?usp=sharing" target="_blank" class="btn"><i class="fas fa-download"></i> Download</a>
-                            <!-- END: ADDED BUTTON -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: Zombie Survivor (renamed to Zombie Waves on Unity Play) -->
                 <div class="project-card reveal-on-scroll">
                     <div class="project-thumbnail" id="zombie-survivor-thumb" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=Zombie+Waves+Gameplay');">
-                        <!-- Replace with actual image/GIF: https://img.itch.zone/aW1hZ2UvMjgwMzcwMC8xNjc2NjI2Ny5wbmc=/original/pB06GZ.png -->
                     </div>
                     <div class="project-info">
                         <h3>Zombie Waves</h3>
@@ -656,7 +620,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container reveal-on-scroll">
             <h2 class="section-title">Establish_Connection</h2>
@@ -668,7 +631,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>© <span id="currentYear"></span> Edwar Amir Andraws Abdelmalak. All Rights Reserved.</p>
@@ -677,6 +639,24 @@
     </footer>
 
     <script>
+        // --- START: SMOOTH SCROLL JAVASCRIPT ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        // --- END: SMOOTH SCROLL JAVASCRIPT ---
+
+
         // Typing Animation for Sub-headline
         const subHeadlineText = "Game Developer | Unity Specialist";
         const subHeadlineElement = document.getElementById('sub-headline-text');
@@ -686,21 +666,18 @@
             if (charIndex < subHeadlineText.length) {
                 subHeadlineElement.innerHTML = subHeadlineText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
                 charIndex++;
-                setTimeout(typeSubHeadline, 100); // Adjust typing speed (milliseconds)
+                setTimeout(typeSubHeadline, 100);
             } else {
-                 subHeadlineElement.querySelector('.cursor').style.animation = 'blink 1s infinite'; // Ensure cursor keeps blinking
+                 subHeadlineElement.querySelector('.cursor').style.animation = 'blink 1s infinite';
             }
         }
         
         // Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.reveal-on-scroll');
-
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                } else {
-                    // entry.target.classList.remove('visible'); // Uncomment to re-trigger animation
                 }
             });
         }, {
