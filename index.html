@@ -603,6 +603,7 @@
                         </div>
                         <div class="project-links">
                             <a href="https://play.unity.com/en/games/41144037-f62d-4c2e-92fc-6f623369a371/jump-stick" target="_blank" class="btn"><i class="fas fa-play"></i> Play Now</a>
+                            <a href="https://drive.google.com/file/d/11RjbfiNH31YDbG4Qe7rjA2S6_bpPJzZ-/view?usp=sharing" target="_blank" class="btn"><i class="fas fa-download"></i> Download</a>
                         </div>
                     </div>
                 </div>
@@ -669,49 +670,62 @@
     </footer>
 
     <script>
-        // Typing Animation for Sub-headline
-        const subHeadlineText = "Game Developer | Unity Specialist";
-        const subHeadlineElement = document.getElementById('sub-headline-text');
-        let charIndex = 0;
-
-        function typeSubHeadline() {
-            if (charIndex < subHeadlineText.length) {
-                subHeadlineElement.innerHTML = subHeadlineText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
-                charIndex++;
-                setTimeout(typeSubHeadline, 100); // Adjust typing speed (milliseconds)
-            } else {
-                 subHeadlineElement.querySelector('.cursor').style.animation = 'blink 1s infinite'; // Ensure cursor keeps blinking
-            }
-        }
-        
-        // Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal-on-scroll');
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                } else {
-                    // entry.target.classList.remove('visible'); // Uncomment to re-trigger animation
-                }
-            });
-        }, {
-            root: null, 
-            threshold: 0.1, 
-        });
-
-        revealElements.forEach(el => {
-            revealObserver.observe(el);
-        });
-
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
         document.addEventListener('DOMContentLoaded', () => {
-            subHeadlineElement.innerHTML = '<span class="cursor"></span>';
-            setTimeout(typeSubHeadline, 500); 
-        });
+            // Typing Animation for Sub-headline
+            const subHeadlineText = "Game Developer | Unity Specialist";
+            const subHeadlineElement = document.getElementById('sub-headline-text');
+            let charIndex = 0;
 
+            function typeSubHeadline() {
+                if (charIndex < subHeadlineText.length) {
+                    subHeadlineElement.innerHTML = subHeadlineText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                    charIndex++;
+                    setTimeout(typeSubHeadline, 100); // Adjust typing speed
+                } else {
+                    subHeadlineElement.querySelector('.cursor').style.animation = 'blink 1s infinite';
+                }
+            }
+            subHeadlineElement.innerHTML = '<span class="cursor"></span>';
+            setTimeout(typeSubHeadline, 500);
+
+            // Scroll Reveal Animation
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1,
+            });
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // START: ADDED SCRIPT FOR RELIABLE SMOOTH SCROLLING
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let targetId = this.getAttribute('href');
+                    let targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            // END: ADDED SCRIPT
+        });
     </script>
 </body>
 </html>
