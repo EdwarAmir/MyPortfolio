@@ -23,7 +23,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* scroll-behavior: smooth; <--- REMOVED this for JS solution */
         }
 
         body {
@@ -34,7 +33,12 @@
             overflow-x: hidden;
         }
 
-        /* ... (The rest of your CSS remains exactly the same) ... */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
         h1, h2, h3, h4 {
             font-family: 'Orbitron', sans-serif;
@@ -113,6 +117,7 @@
             box-shadow: 0 0 20px 0px var(--accent-hover);
         }
 
+        /* --- Hero Section --- */
         #hero {
             height: 100vh;
             display: flex;
@@ -195,6 +200,7 @@
             z-index: 1;
         }
 
+        /* --- General Section Styling --- */
         .section {
             padding: 80px 0;
             background-color: var(--secondary-dark);
@@ -206,22 +212,23 @@
             background-color: var(--secondary-dark);
         }
 
+        /* --- About Section --- */
         #about .container {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: center; /* Vertically align items in the middle if they wrap */
             gap: 40px;
         }
         
         #about .about-image {
-            width: 300px;
-            height: 300px;
-            flex-shrink: 0;
-            background-color: var(--card-bg);
+            width: 300px;      /* Fixed width for the circle */
+            height: 300px;     /* Fixed height for the circle */
+            flex-shrink: 0;    /* Prevent the image container from shrinking if space is tight */
+            background-color: var(--card-bg); /* Fallback color */
             border: 3px solid var(--accent-color);
-            border-radius: 50%;
+            border-radius: 50%; /* Makes the div circular */
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-            overflow: hidden;
+            overflow: hidden;   /* CRUCIAL: Clips anything outside the circle boundaries */
             position: relative; 
         }
         
@@ -229,14 +236,16 @@
             display: block; 
             width: 100%;    
             height: 100%;   
-            object-fit: cover;
+            object-fit: cover; /* Scales the image to fill the container, cropping if necessary. */
         }
 
         #about .about-content {
-            flex: 1;
-            min-width: 300px;
+            flex: 1; /* Allows this content to take up remaining space */
+            min-width: 300px; /* Ensures content doesn't get too squished on smaller flex layouts */
         }
 
+
+        /* --- Experience Section --- */
         #experience .experience-item {
             background-color: var(--card-bg);
             padding: 30px;
@@ -291,6 +300,7 @@
             font-weight: bold;
         }
 
+        /* --- Skills Section --- */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -320,6 +330,7 @@
             color: var(--text-light);
         }
 
+        /* --- Projects Section --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -385,6 +396,7 @@
             margin-right: 5px;
         }
 
+        /* --- Contact Section --- */
         #contact .container {
             max-width: 700px;
             text-align: center;
@@ -408,6 +420,7 @@
             margin-right: 8px;
         }
 
+        /* --- Footer --- */
         footer {
             text-align: center;
             padding: 30px 20px;
@@ -420,6 +433,7 @@
             color: var(--text-medium);
         }
 
+        /* --- Scroll Reveal Animation --- */
         .reveal-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -430,6 +444,7 @@
             transform: translateY(0);
         }
 
+        /* --- Responsive Design --- */
         @media (max-width: 992px) {
             #hero h1 { font-size: 2.8rem; }
             #hero .sub-headline { font-size: 1.5rem; }
@@ -445,12 +460,12 @@
             #hero p { font-size: 1rem; }
             
             #about .container {
-                flex-direction: column;
+                flex-direction: column; /* Stack image and text vertically */
                 text-align: center;
             }
             #about .about-image {
-                margin: 0 auto 20px auto;
-                width: 200px;
+                margin: 0 auto 20px auto; /* Center the image and add bottom margin */
+                width: 200px; /* Smaller circle on mobile */
                 height: 200px;
             }
 
@@ -482,11 +497,12 @@
         </div>
     </header>
 
-    <!-- ... (The rest of your HTML Body remains exactly the same until the script section) ... -->
+    <!-- (Your HTML body content is unchanged here) -->
+    
     <section id="about" class="section">
         <div class="container">
                       <div class="about-image reveal-on-scroll">
-                <img src="edwar-amir.jpg" alt="Edwar Amir - Game Developer">
+                <img src="edwar-amir.jpg" alt="Edwar Amir - Game Developer"> 
             </div>
             <div class="about-content reveal-on-scroll">
                 <h2 class="section-title">Player_Profile</h2>
@@ -495,7 +511,6 @@
             </div>
         </div>
     </section>
-
     <section id="experience" class="section">
         <div class="container">
             <h2 class="section-title">Field_Experience</h2>
@@ -514,112 +529,30 @@
             </div>
         </div>
     </section>
-
     <section id="skills" class="section">
         <div class="container">
             <h2 class="section-title">Arsenal_Loaded</h2>
             <div class="skills-grid">
-                <div class="skill-item reveal-on-scroll">
-                    <i class="fab fa-unity"></i>
-                    <h3>Unity (2D & 3D)</h3>
-                    <p>Expert in leveraging the Unity engine for diverse game projects.</p>
-                </div>
-                <div class="skill-item reveal-on-scroll">
-                    <i class="fas fa-code"></i>
-                    <h3>C# Programming</h3>
-                    <p>Proficient in C# for scripting gameplay, UI, and editor tools.</p>
-                </div>
-                <div class="skill-item reveal-on-scroll">
-                    <i class="fas fa-gamepad"></i>
-                    <h3>Gameplay Programming</h3>
-                    <p>Designing and implementing core game mechanics and player controls.</p>
-                </div>
-                <div class="skill-item reveal-on-scroll">
-                    <i class="fas fa-brain"></i>
-                    <h3>AI Systems</h3>
-                    <p>Developing intelligent NPC behaviors and decision-making systems.</p>
-                </div>
-                <div class="skill-item reveal-on-scroll">
-                    <i class="fas fa-desktop"></i>
-                    <h3>Game UI/UX</h3>
-                    <p>Creating intuitive user interfaces and enhancing player experience.</p>
-                </div>
-                <div class="skill-item reveal-on-scroll">
-                    <i class="fas fa-magic-sparkles"></i>
-                    <h3>Particle Systems & Animations</h3>
-                    <p>Crafting visual effects and animations to bring games to life.</p>
-                </div>
-                 <div class="skill-item reveal-on-scroll">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <h3>Game Optimization</h3>
-                    <p>Ensuring smooth performance across various platforms.</p>
-                </div>
+                <div class="skill-item reveal-on-scroll"><i class="fab fa-unity"></i><h3>Unity (2D & 3D)</h3><p>Expert in leveraging the Unity engine for diverse game projects.</p></div>
+                <div class="skill-item reveal-on-scroll"><i class="fas fa-code"></i><h3>C# Programming</h3><p>Proficient in C# for scripting gameplay, UI, and editor tools.</p></div>
+                <div class="skill-item reveal-on-scroll"><i class="fas fa-gamepad"></i><h3>Gameplay Programming</h3><p>Designing and implementing core game mechanics and player controls.</p></div>
+                <div class="skill-item reveal-on-scroll"><i class="fas fa-brain"></i><h3>AI Systems</h3><p>Developing intelligent NPC behaviors and decision-making systems.</p></div>
+                <div class="skill-item reveal-on-scroll"><i class="fas fa-desktop"></i><h3>Game UI/UX</h3><p>Creating intuitive user interfaces and enhancing player experience.</p></div>
+                <div class="skill-item reveal-on-scroll"><i class="fas fa-magic-sparkles"></i><h3>Particle Systems & Animations</h3><p>Crafting visual effects and animations to bring games to life.</p></div>
+                <div class="skill-item reveal-on-scroll"><i class="fas fa-tachometer-alt"></i><h3>Game Optimization</h3><p>Ensuring smooth performance across various platforms.</p></div>
             </div>
         </div>
     </section>
-
     <section id="projects" class="section">
         <div class="container">
             <h2 class="section-title">Game_Library</h2>
             <div class="projects-grid">
-                <div class="project-card reveal-on-scroll">
-                    <div class="project-thumbnail" id="jump-stick-thumb" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=Jump+Stick+Gameplay');">
-                    </div>
-                    <div class="project-info">
-                        <h3>Jump Stick</h3>
-                        <p>A fast-paced vertical platformer with quirky physics and addictive gameplay.</p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">2D</span>
-                            <span class="tag">Platformer</span>
-                            <span class="tag">Physics</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://play.unity.com/en/games/41144037-f62d-4c2e-92fc-6f623369a371/jump-stick" target="_blank" class="btn"><i class="fas fa-play"></i> Play Now</a>
-                            <a href="https://drive.google.com/file/d/11RjbfiNH31YDbG4Qe7rjA2S6_bpPJzZ-/view?usp=sharing" target="_blank" class="btn"><i class="fas fa-download"></i> Download</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card reveal-on-scroll">
-                    <div class="project-thumbnail" id="zombie-survivor-thumb" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=Zombie+Waves+Gameplay');">
-                    </div>
-                    <div class="project-info">
-                        <h3>Zombie Waves</h3>
-                        <p>A top-down zombie survival game featuring wave mechanics, AI behavior, and player progression.</p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Top-Down</span>
-                            <span class="tag">Survival</span>
-                            <span class="tag">AI</span>
-                        </div>
-                        <div class="project-links">
-                             <a href="https://play.unity.com/en/games/bdf3c034-65af-467f-8f85-0fefd72a737b/zombie-waves" target="_blank" class="btn"><i class="fas fa-play"></i> Play Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card reveal-on-scroll">
-                     <div class="project-thumbnail" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=More+Projects+Soon');">
-                    </div>
-                    <div class="project-info">
-                        <h3>More Prototypes & Experiments</h3>
-                        <p>Various experimental prototypes and gameplay systems showcasing diverse mechanics.</p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Experimental</span>
-                            <span class="tag">Prototypes</span>
-                        </div>
-                         <div class="project-links">
-                            <a href="https://play.unity.com/en/user/be3a854a-e935-4608-abbb-2f553c893c62" target="_blank" class="btn"><i class="fas fa-folder-open"></i> View All</a>
-                        </div>
-                    </div>
-                </div>
-
+                <div class="project-card reveal-on-scroll"><div class="project-thumbnail" id="jump-stick-thumb" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=Jump+Stick+Gameplay');"></div><div class="project-info"><h3>Jump Stick</h3><p>A fast-paced vertical platformer with quirky physics and addictive gameplay.</p><div class="project-tags"><span class="tag">Unity</span><span class="tag">2D</span><span class="tag">Platformer</span><span class="tag">Physics</span></div><div class="project-links"><a href="https://play.unity.com/en/games/41144037-f62d-4c2e-92fc-6f623369a371/jump-stick" target="_blank" class="btn"><i class="fas fa-play"></i> Play Now</a><a href="https://drive.google.com/file/d/11RjbfiNH31YDbG4Qe7rjA2S6_bpPJzZ-/view?usp=sharing" target="_blank" class="btn"><i class="fas fa-download"></i> Download</a></div></div></div>
+                <div class="project-card reveal-on-scroll"><div class="project-thumbnail" id="zombie-survivor-thumb" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=Zombie+Waves+Gameplay');"></div><div class="project-info"><h3>Zombie Waves</h3><p>A top-down zombie survival game featuring wave mechanics, AI behavior, and player progression.</p><div class="project-tags"><span class="tag">Unity</span><span class="tag">Top-Down</span><span class="tag">Survival</span><span class="tag">AI</span></div><div class="project-links"><a href="https://play.unity.com/en/games/bdf3c034-65af-467f-8f85-0fefd72a737b/zombie-waves" target="_blank" class="btn"><i class="fas fa-play"></i> Play Now</a></div></div></div>
+                <div class="project-card reveal-on-scroll"><div class="project-thumbnail" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=More+Projects+Soon');"></div><div class="project-info"><h3>More Prototypes & Experiments</h3><p>Various experimental prototypes and gameplay systems showcasing diverse mechanics.</p><div class="project-tags"><span class="tag">Unity</span><span class="tag">Experimental</span><span class="tag">Prototypes</span></div><div class="project-links"><a href="https://play.unity.com/en/user/be3a854a-e935-4608-abbb-2f553c893c62" target="_blank" class="btn"><i class="fas fa-folder-open"></i> View All</a></div></div></div>
             </div>
         </div>
     </section>
-
     <section id="contact" class="section">
         <div class="container reveal-on-scroll">
             <h2 class="section-title">Establish_Connection</h2>
@@ -630,7 +563,8 @@
             </div>
         </div>
     </section>
-
+    
+    <!-- Footer -->
     <footer>
         <div class="container">
             <p>© <span id="currentYear"></span> Edwar Amir Andraws Abdelmalak. All Rights Reserved.</p>
@@ -639,64 +573,88 @@
     </footer>
 
     <script>
-        // --- START: SMOOTH SCROLL JAVASCRIPT ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        // --- END: SMOOTH SCROLL JAVASCRIPT ---
-
-
-        // Typing Animation for Sub-headline
-        const subHeadlineText = "Game Developer | Unity Specialist";
-        const subHeadlineElement = document.getElementById('sub-headline-text');
-        let charIndex = 0;
-
-        function typeSubHeadline() {
-            if (charIndex < subHeadlineText.length) {
-                subHeadlineElement.innerHTML = subHeadlineText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
-                charIndex++;
-                setTimeout(typeSubHeadline, 100);
-            } else {
-                 subHeadlineElement.querySelector('.cursor').style.animation = 'blink 1s infinite';
-            }
-        }
-        
-        // Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal-on-scroll');
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            root: null, 
-            threshold: 0.1, 
-        });
-
-        revealElements.forEach(el => {
-            revealObserver.observe(el);
-        });
-
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
         document.addEventListener('DOMContentLoaded', () => {
-            subHeadlineElement.innerHTML = '<span class="cursor"></span>';
-            setTimeout(typeSubHeadline, 500); 
-        });
 
+            // --- START: CUSTOM SMOOTH SCROLL ---
+            function smoothScroll(targetSelector, duration) {
+                const targetElement = document.querySelector(targetSelector);
+                if (!targetElement) return;
+
+                const targetPosition = targetElement.getBoundingClientRect().top;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition;
+                let startTime = null;
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const run = ease(timeElapsed, startPosition, distance, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
+
+                // Easing function for a more natural animation
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                requestAnimationFrame(animation);
+            }
+
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    smoothScroll(targetId, 800); // Scroll duration 800ms
+                });
+            });
+            // --- END: CUSTOM SMOOTH SCROLL ---
+
+
+            // Typing Animation for Sub-headline
+            const subHeadlineText = "Game Developer | Unity Specialist";
+            const subHeadlineElement = document.getElementById('sub-headline-text');
+            let charIndex = 0;
+
+            function typeSubHeadline() {
+                if (charIndex < subHeadlineText.length) {
+                    subHeadlineElement.innerHTML = subHeadlineText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                    charIndex++;
+                    setTimeout(typeSubHeadline, 100);
+                } else {
+                     subHeadlineElement.querySelector('.cursor').style.animation = 'blink 1s infinite';
+                }
+            }
+            
+            // Start the typing animation
+            subHeadlineElement.innerHTML = '<span class="cursor"></span>';
+            setTimeout(typeSubHeadline, 500);
+
+
+            // Scroll Reveal Animation
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                root: null, 
+                threshold: 0.1, 
+            });
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
     </script>
 </body>
 </html>
