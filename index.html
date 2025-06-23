@@ -32,7 +32,6 @@
             color: var(--text-light);
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
 
         .container {
@@ -99,7 +98,6 @@
             transition: all 0.3s ease;
             margin: 10px 5px;
             box-shadow: 0 0 8px 0px var(--accent-color);
-            cursor: pointer;
         }
 
         .btn:hover {
@@ -201,9 +199,6 @@
 
         .hero-buttons {
             z-index: 1;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
         }
 
         /* --- General Section Styling --- */
@@ -222,19 +217,21 @@
         #about .container {
             display: flex;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: center; /* Vertically align items in the middle if they wrap */
             gap: 40px;
         }
         
         #about .about-image {
-            width: 300px;
-            height: 300px;
-            flex-shrink: 0;
-            background-color: var(--card-bg);
+            width: 300px;      /* Fixed width for the circle */
+            height: 300px;     /* Fixed height for the circle */
+            flex-shrink: 0;    /* Prevent the image container from shrinking if space is tight */
+            /* flex-basis: 300px; was used before, width/height is more direct for non-flex-growing item */
+            
+            background-color: var(--card-bg); /* Fallback color */
             border: 3px solid var(--accent-color);
-            border-radius: 50%;
+            border-radius: 50%; /* Makes the div circular */
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-            overflow: hidden;
+            overflow: hidden;   /* CRUCIAL: Clips anything outside the circle boundaries */
             position: relative; 
         }
         
@@ -242,13 +239,15 @@
             display: block; 
             width: 100%;    
             height: 100%;   
-            object-fit: cover;
+            object-fit: cover; /* Scales the image to fill the container, cropping if necessary. Prevents pixelation if source is larger. */
+            /* object-position: center top; */ /* Optional: Uncomment and adjust if default centering isn't perfect for your photo (e.g., 'center center', '50% 25%') */
         }
 
         #about .about-content {
-            flex: 1;
-            min-width: 300px;
+            flex: 1; /* Allows this content to take up remaining space */
+            min-width: 300px; /* Ensures content doesn't get too squished on smaller flex layouts */
         }
+
 
         /* --- Experience Section --- */
         #experience .experience-item {
@@ -449,73 +448,6 @@
             transform: translateY(0);
         }
 
-        /* --- Mobile Navigation --- */
-        .mobile-nav-btn {
-            display: none;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: transparent;
-            border: 2px solid var(--accent-color);
-            border-radius: 5px;
-            padding: 10px;
-            color: var(--accent-color);
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 0 8px var(--accent-color);
-        }
-
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 70%;
-            height: 100%;
-            background: var(--primary-dark);
-            z-index: 999;
-            padding: 80px 20px 20px;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-            border-left: 2px solid var(--accent-color);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-        }
-
-        .mobile-nav.active {
-            transform: translateX(0);
-        }
-
-        .mobile-nav a {
-            display: block;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 1.2rem;
-            color: var(--text-light);
-            text-align: center;
-        }
-
-        .mobile-nav a:hover {
-            color: var(--accent-color);
-            background: rgba(0, 255, 255, 0.1);
-        }
-
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 998;
-        }
-
-        .overlay.active {
-            display: block;
-        }
-
         /* --- Responsive Design --- */
         @media (max-width: 992px) {
             #hero h1 { font-size: 2.8rem; }
@@ -532,62 +464,30 @@
             #hero p { font-size: 1rem; }
             
             #about .container {
-                flex-direction: column;
+                flex-direction: column; /* Stack image and text vertically */
                 text-align: center;
             }
             #about .about-image {
-                margin: 0 auto 20px auto;
-                width: 200px;
+                margin: 0 auto 20px auto; /* Center the image and add bottom margin */
+                width: 200px; /* Smaller circle on mobile */
                 height: 200px;
             }
+            /* Note: .about-image img will automatically adapt to this new size due to width/height 100% */
 
             .skills-grid { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
 
             .btn { padding: 10px 20px; font-size: 0.9rem; }
-            
-            /* Show mobile nav button */
-            .mobile-nav-btn {
-                display: block;
-            }
         }
-        
         @media (max-width: 480px) {
-            #hero h1 { font-size: 1.8rem; }
-            #hero .sub-headline { font-size: 1.1rem; }
-            #hero .sub-headline .cursor { height: 1.1rem; }
-            h2.section-title { font-size: 1.8rem; }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .mobile-nav {
-                width: 80%;
-            }
+             #hero h1 { font-size: 1.8rem; }
+             #hero .sub-headline { font-size: 1.1rem; }
+             #hero .sub-headline .cursor { height: 1.1rem; }
+             h2.section-title { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
-
-    <!-- Mobile Navigation Button -->
-    <button class="mobile-nav-btn" id="mobileNavBtn">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Mobile Navigation Menu -->
-    <nav class="mobile-nav" id="mobileNav">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <!-- Overlay for mobile menu -->
-    <div class="overlay" id="overlay"></div>
 
     <!-- Hero Section -->
     <header id="hero">
@@ -596,8 +496,8 @@
             <p class="sub-headline" id="sub-headline-text">Game Developer | Unity Specialist<span class="cursor"></span></p>
             <p>Crafting immersive worlds and engaging gameplay. Turning ideas into playable realities.</p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary scroll-link">View My Work</a>
-                <a href="#contact" class="btn scroll-link">Get In Touch</a>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn">Get In Touch</a>
             </div>
         </div>
     </header>
@@ -605,8 +505,9 @@
     <!-- About Me Section -->
     <section id="about" class="section">
         <div class="container">
-            <div class="about-image reveal-on-scroll">
-                <img src="https://via.placeholder.com/300x300/25253D/00FFFF?text=Edwar+Amir" alt="Edwar Amir - Game Developer"> 
+                      <div class="about-image reveal-on-scroll">
+                <img src="edwar-amir.jpg" alt="Edwar Amir - Game Developer"> 
+                <!-- If you put it in an 'images' folder, use: src="images/edwar-amir.jpg" -->
             </div>
             <div class="about-content reveal-on-scroll">
                 <h2 class="section-title">Player_Profile</h2>
@@ -633,6 +534,7 @@
                     <li>Assisting in quality assurance and testing processes.</li>
                 </ul>
             </div>
+            <!-- You can add more <div class="experience-item"> here for past experiences -->
         </div>
     </section>
 
@@ -688,6 +590,7 @@
                 <!-- Project 1: Jump Stick -->
                 <div class="project-card reveal-on-scroll">
                     <div class="project-thumbnail" id="jump-stick-thumb" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=Jump+Stick+Gameplay');">
+                        <!-- Replace with actual image/GIF: https://img.itch.zone/aW1hZ2UvMjgwMzY4OC8xNjc2NjA5Mi5wbmc=/original/m2x1n3.png -->
                     </div>
                     <div class="project-info">
                         <h3>Jump Stick</h3>
@@ -700,14 +603,17 @@
                         </div>
                         <div class="project-links">
                             <a href="https://play.unity.com/en/games/41144037-f62d-4c2e-92fc-6f623369a371/jump-stick" target="_blank" class="btn"><i class="fas fa-play"></i> Play Now</a>
+                            <!-- START: ADDED BUTTON -->
                             <a href="https://drive.google.com/file/d/11RjbfiNH31YDbG4Qe7rjA2S6_bpPJzZ-/view?usp=sharing" target="_blank" class="btn"><i class="fas fa-download"></i> Download</a>
+                            <!-- END: ADDED BUTTON -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: Zombie Survivor -->
+                <!-- Project 2: Zombie Survivor (renamed to Zombie Waves on Unity Play) -->
                 <div class="project-card reveal-on-scroll">
                     <div class="project-thumbnail" id="zombie-survivor-thumb" style="background-image: url('https://placehold.co/600x400/25253D/00FFFF/png?text=Zombie+Waves+Gameplay');">
+                        <!-- Replace with actual image/GIF: https://img.itch.zone/aW1hZ2UvMjgwMzcwMC8xNjc2NjI2Ny5wbmc=/original/pB06GZ.png -->
                     </div>
                     <div class="project-info">
                         <h3>Zombie Waves</h3>
@@ -775,9 +681,9 @@
             if (charIndex < subHeadlineText.length) {
                 subHeadlineElement.innerHTML = subHeadlineText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
                 charIndex++;
-                setTimeout(typeSubHeadline, 100);
+                setTimeout(typeSubHeadline, 100); // Adjust typing speed (milliseconds)
             } else {
-                 subHeadlineElement.querySelector('.cursor').style.animation = 'blink 1s infinite';
+                 subHeadlineElement.querySelector('.cursor').style.animation = 'blink 1s infinite'; // Ensure cursor keeps blinking
             }
         }
         
@@ -788,6 +694,8 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                } else {
+                    // entry.target.classList.remove('visible'); // Uncomment to re-trigger animation
                 }
             });
         }, {
@@ -802,52 +710,22 @@
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // Mobile Navigation
-        const mobileNavBtn = document.getElementById('mobileNavBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        const overlay = document.getElementById('overlay');
-        
-        mobileNavBtn.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-            overlay.classList.toggle('active');
-        });
-        
-        overlay.addEventListener('click', () => {
-            mobileNav.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-        
-        // Enhanced Smooth Scrolling for All Devices
-        document.querySelectorAll('a.scroll-link, .mobile-nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Close mobile menu if open
-                mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    // Calculate offset for mobile devices
-                    const offset = window.innerWidth <= 768 ? 80 : 0;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', () => {
             subHeadlineElement.innerHTML = '<span class="cursor"></span>';
             setTimeout(typeSubHeadline, 500); 
         });
 
     </script>
+<script>
+  document.querySelectorAll('.btn[href^="#"]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(btn.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
 </body>
 </html>
