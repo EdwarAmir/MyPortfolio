@@ -20,7 +20,7 @@
         }
 
         html {
-            scroll-behavior: smooth; /* Good practice to keep this for desktop/supporting browsers */
+            scroll-behavior: smooth;
         }
 
         * {
@@ -123,7 +123,9 @@
 
         /* --- Hero Section --- */
         #hero {
-            height: 100vh;
+            /* THE CRITICAL FIX IS HERE: */
+            min-height: 100vh; /* Changed from height to min-height */
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -132,7 +134,6 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #12121f 60%, #0a0a14 100%);
             position: relative;
             padding: 20px;
-            /* overflow: hidden; <--- THE FIX: THIS LINE HAS BEEN REMOVED. */
         }
         
         #hero::before, #hero::after {
@@ -216,14 +217,12 @@
             background-color: var(--secondary-dark);
         }
 
-        /* All other CSS is unchanged */
         #about .container{display:flex;flex-wrap:wrap;align-items:center;gap:40px}#about .about-image{width:300px;height:300px;flex-shrink:0;background-color:var(--card-bg);border:3px solid var(--accent-color);border-radius:50%;box-shadow:0 0 15px rgba(0,255,255,.3);overflow:hidden;position:relative}#about .about-image img{display:block;width:100%;height:100%;object-fit:cover}#about .about-content{flex:1;min-width:300px}#experience .experience-item{background-color:var(--card-bg);padding:30px;border-radius:8px;border:1px solid var(--border-color);margin-bottom:30px;box-shadow:0 5px 15px rgba(0,0,0,.2);transition:transform .3s ease,box-shadow .3s ease}#experience .experience-item:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,.3),0 0 10px var(--accent-color)}#experience .experience-item h3{font-size:1.6rem;color:var(--text-light);margin-bottom:8px}#experience .experience-item .company{font-size:1.1rem;font-weight:bold;color:var(--accent-color);margin-bottom:5px;display:block}#experience .experience-item .date{font-size:.9rem;color:var(--text-medium);margin-bottom:15px;font-style:italic}#experience .experience-item .game-focus{font-weight:bold;color:var(--text-light);margin-bottom:10px}#experience .experience-item ul{list-style-type:none;padding-left:0;color:var(--text-medium)}#experience .experience-item ul li{margin-bottom:8px;position:relative;padding-left:20px}#experience .experience-item ul li::before{content:'>';position:absolute;left:0;color:var(--accent-color);font-weight:bold}.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}.skill-item{background-color:var(--card-bg);padding:25px;border-radius:8px;text-align:center;border:1px solid var(--border-color);transition:transform .3s ease,box-shadow .3s ease}.skill-item:hover{transform:translateY(-10px);box-shadow:0 10px 20px rgba(0,0,0,.4),0 0 15px var(--accent-color)}.skill-item i{font-size:3rem;color:var(--accent-color);margin-bottom:15px;display:block}.skill-item h3{font-size:1.2rem;margin-bottom:10px;color:var(--text-light)}.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}.project-card{background-color:var(--card-bg);border-radius:8px;overflow:hidden;border:1px solid var(--border-color);transition:transform .3s ease,box-shadow .3s ease;display:flex;flex-direction:column}.project-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 10px 25px rgba(0,0,0,.5),0 0 20px var(--accent-color)}.project-thumbnail{width:100%;height:200px;background-color:#333;display:flex;justify-content:center;align-items:center;color:var(--text-medium);font-style:italic;background-size:cover;background-position:center}.project-info{padding:20px;flex-grow:1;display:flex;flex-direction:column}.project-info h3{font-size:1.5rem;margin-bottom:10px}.project-tags{margin-bottom:15px}.project-tags .tag{display:inline-block;background-color:var(--primary-dark);color:var(--accent-color);padding:4px 8px;border-radius:4px;font-size:.8rem;margin-right:5px;margin-bottom:5px;border:1px solid var(--accent-color)}.project-links{margin-top:auto}.project-links a{margin-right:10px;font-weight:bold}.project-links a i{margin-right:5px}#contact .container{max-width:700px;text-align:center}#contact p{font-size:1.1rem;margin-bottom:30px}.contact-links a{font-size:1.5rem;margin:0 20px;color:var(--text-light);transition:color .3s ease,transform .3s ease}.contact-links a:hover{color:var(--accent-color);transform:scale(1.1);text-decoration:none}.contact-links a i{margin-right:8px}footer{text-align:center;padding:30px 20px;background-color:var(--primary-dark);border-top:1px solid var(--border-color)}footer p{margin-bottom:0;font-size:.9rem;color:var(--text-medium)}.reveal-on-scroll{opacity:0;transform:translateY(30px);transition:opacity .8s ease-out,transform .8s ease-out}.reveal-on-scroll.visible{opacity:1;transform:translateY(0)}@media (max-width:992px){#hero h1{font-size:2.8rem}#hero .sub-headline{font-size:1.5rem}#hero .sub-headline .cursor{height:1.5rem}h2.section-title{font-size:2rem}}@media (max-width:768px){.container{width:95%;padding:30px 15px}#hero h1{font-size:2.2rem}#hero .sub-headline{font-size:1.3rem}#hero .sub-headline .cursor{height:1.3rem}#hero p{font-size:1rem}#about .container{flex-direction:column;text-align:center}#about .about-image{margin:0 auto 20px auto;width:200px;height:200px}.skills-grid{grid-template-columns:1fr}.projects-grid{grid-template-columns:1fr}.btn{padding:10px 20px;font-size:.9rem}}@media (max-width:480px){#hero h1{font-size:1.8rem}#hero .sub-headline{font-size:1.1rem}#hero .sub-headline .cursor{height:1.1rem}h2.section-title{font-size:1.8rem}}
 
     </style>
 </head>
 <body>
 
-    <!-- HTML Body is unchanged -->
     <header id="hero"><div class="hero-content"><h1>EDWAR AMIR</h1><p class="sub-headline" id="sub-headline-text">Game Developer | Unity Specialist<span class="cursor"></span></p><p>Crafting immersive worlds and engaging gameplay. Turning ideas into playable realities.</p><div class="hero-buttons"><a href="#projects" class="btn btn-primary">View My Work</a><a href="#contact" class="btn">Get In Touch</a></div></div></header>
     <section id="about" class="section"><div class="container"><div class="about-image reveal-on-scroll"><img src="edwar-amir.jpg" alt="Edwar Amir - Game Developer"></div><div class="about-content reveal-on-scroll"><h2 class="section-title">Player_Profile</h2><p>Hi, I’m <strong>Edwar Amir Andraws Abdelmalak</strong>. I’m a passionate game developer who loves creating immersive and fun experiences using <strong>Unity and C#</strong>. I specialize in gameplay mechanics, AI systems, and interactive environments.</p><p>I’ve developed multiple indie projects, including <strong>Jump Stick</strong> – a fast-paced vertical platformer, and <strong>Zombie Survivor</strong> – a top-down survival game. My focus is on building engaging mechanics, solid architecture, and a smooth player experience.</p></div></div></section>
     <section id="experience" class="section"><div class="container"><h2 class="section-title">Field_Experience</h2><div class="experience-item reveal-on-scroll"><h3>Game Developer Intern</h3><span class="company">Forgotten Mines</span><p class="date"><em>Feb 2025</em> - Present</p><p class="game-focus">Contributing to: <strong>War to the Core</strong></p><p>Actively involved in the ongoing development and enhancement of "War to the Core". My responsibilities include:</p><ul><li>Implementing new game features and updates based on design specifications.</li><li>Identifying, troubleshooting, and resolving bugs to improve game stability.</li><li>Collaborating with the development team to refine gameplay mechanics.</li><li>Assisting in quality assurance and testing processes.</li></ul></div></div></section>
@@ -235,25 +234,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- SMOOTH SCROLL FOR MOBILE FALLBACK ---
-            // This script ensures smooth scrolling works even on browsers that don't fully support the CSS version.
+            // This script ensures smooth scrolling works even on browsers that don't fully support CSS `scroll-behavior`.
             const anchorLinks = document.querySelectorAll('a[href^="#"]');
             anchorLinks.forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
 
-                    // Check if the target is a valid element on the page
                     if (targetElement) {
-                        e.preventDefault(); // Prevent the default instant jump
+                        e.preventDefault();
                         targetElement.scrollIntoView({
                             behavior: 'smooth'
                         });
                     }
                 });
             });
-
-            // --- ORIGINAL SCRIPTS ---
 
             // Typing Animation
             const subHeadlineText = "Game Developer | Unity Specialist";
