@@ -18,75 +18,19 @@
             --card-bg: #25253D;
             --border-color: #3A3A5A;
         }
+        
+        /* --- START OF THE FIX --- */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* --- END OF THE FIX --- */
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
-        /* Add these CSS rules to improve mobile button experience */
 
-/* Enhanced mobile button styling - ADD THIS to your existing CSS */
-@media (max-width: 768px) {
-    /* Existing mobile styles... keep all your current @media rules */
-    
-    /* Improve button touch targets and spacing for mobile */
-    .hero-buttons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-    }
-    
-    .hero-buttons .btn {
-        width: 100%;
-        min-height: 48px; /* Minimum touch target size */
-        padding: 15px 25px;
-        font-size: 1rem;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        /* Enhanced mobile touch feedback */
-        -webkit-tap-highlight-color: rgba(0, 255, 255, 0.3);
-        tap-highlight-color: rgba(0, 255, 255, 0.3);
-        
-        /* Prevent text selection on touch */
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        
-        /* Smooth touch transitions */
-        transition: all 0.2s ease;
-    }
-    
-    /* Active state for better mobile feedback */
-    .hero-buttons .btn:active {
-        transform: translateY(1px) scale(0.98);
-        box-shadow: 0 0 10px 0px var(--accent-color);
-    }
-    
-    /* Ensure smooth scrolling works on mobile */
-    html {
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-    }
-}
-
-/* Additional mobile-specific improvements */
-@media (max-width: 480px) {
-    .hero-buttons .btn {
-        font-size: 0.95rem;
-        padding: 12px 20px;
-        min-height: 44px;
-    }
-}
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--primary-dark);
@@ -733,46 +677,6 @@
     </footer>
 
     <script>
-// Add this JavaScript code to your existing <script> section
-// Enhanced smooth scrolling for mobile devices
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Existing code... keep your current DOMContentLoaded content
-    
-    // Enhanced smooth scrolling for all devices, especially mobile
-    const scrollButtons = document.querySelectorAll('a[href^="#"]');
-    
-    scrollButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                // Calculate offset for mobile header space
-                const offset = window.innerWidth <= 768 ? 20 : 0;
-                const targetPosition = targetElement.offsetTop - offset;
-                
-                // Smooth scroll with fallback for older mobile browsers
-                if ('scrollBehavior' in document.documentElement.style) {
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // Fallback for older mobile browsers
-                    window.scrollTo(0, targetPosition);
-                }
-                
-                // Optional: Add haptic feedback on supported mobile devices
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(50);
-                }
-            }
-        });
-    });
-});
         // Typing Animation for Sub-headline
         const subHeadlineText = "Game Developer | Unity Specialist";
         const subHeadlineElement = document.getElementById('sub-headline-text');
