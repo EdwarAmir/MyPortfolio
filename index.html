@@ -485,6 +485,11 @@
              #hero .sub-headline .cursor { height: 1.1rem; }
              h2.section-title { font-size: 1.8rem; }
         }
+        html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
     </style>
 </head>
 <body>
@@ -714,18 +719,10 @@
             subHeadlineElement.innerHTML = '<span class="cursor"></span>';
             setTimeout(typeSubHeadline, 500); 
         });
-
+        
     </script>
-<script>
-  document.querySelectorAll('.btn[href^="#"]').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(btn.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-</script>
+<script src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
+<script>smoothscroll.polyfill();</script>
+
 </body>
 </html>
