@@ -25,7 +25,7 @@
             box-sizing: border-box;
         }
 
-        /* IMPORTANT: scroll-behavior is now handled by JavaScript for reliability */
+        /* IMPORTANT: All scroll-behavior is removed. JS handles everything. */
         html {
             scroll-behavior: auto !important;
         }
@@ -377,44 +377,44 @@
             // --- Footer Year ---
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-            // --- START: BULLETPROOF SMOOTH SCROLL SCRIPT ---
-            const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
+            // --- START: NEW, RELIABLE SMOOTH SCROLL SCRIPT ---
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
 
-            const scrollToTarget = (targetId, duration = 800) => {
-                const targetElement = document.querySelector(targetId);
-                if (!targetElement) return;
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
 
-                const targetPosition = targetElement.getBoundingClientRect().top;
-                const startPosition = window.pageYOffset;
-                let startTime = null;
+                    if (targetElement) {
+                        // The reliable way to get the element's top position
+                        const targetPosition = targetElement.offsetTop;
+                        const startPosition = window.pageYOffset;
+                        const distance = targetPosition - startPosition;
+                        const duration = 1000; // milliseconds
+                        let startTime = null;
 
-                const ease = (t, b, c, d) => {
-                    t /= d / 2;
-                    if (t < 1) return c / 2 * t * t + b;
-                    t--;
-                    return -c / 2 * (t * (t - 2) - 1) + b;
-                };
+                        function animation(currentTime) {
+                            if (startTime === null) startTime = currentTime;
+                            const timeElapsed = currentTime - startTime;
+                            const run = ease(timeElapsed, startPosition, distance, duration);
+                            window.scrollTo(0, run);
+                            if (timeElapsed < duration) requestAnimationFrame(animation);
+                        }
 
-                const animation = (currentTime) => {
-                    if (startTime === null) startTime = currentTime;
-                    const timeElapsed = currentTime - startTime;
-                    const run = ease(timeElapsed, startPosition, targetPosition, duration);
-                    window.scrollTo(0, run);
-                    if (timeElapsed < duration) {
+                        // Easing function for a smooth start and end
+                        function ease(t, b, c, d) {
+                            t /= d / 2;
+                            if (t < 1) return c / 2 * t * t + b;
+                            t--;
+                            return -c / 2 * (t * (t - 2) - 1) + b;
+                        }
+
                         requestAnimationFrame(animation);
                     }
-                };
-                requestAnimationFrame(animation);
-            };
-
-            smoothScrollLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    scrollToTarget(targetId);
                 });
             });
-            // --- END: BULLETPROOF SMOOTH SCROLL SCRIPT ---
+            // --- END: NEW, RELIABLE SMOOTH SCROLL SCRIPT ---
         });
     </script>
 </body>
